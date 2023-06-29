@@ -5,8 +5,13 @@ const userSchema = mongoose.Schema({
     email: {type: String, required: true},
     password: {type: String, required:true},
     about: {type: String },
+    userDP: {type: String },
     tags: {type: [String] },
-    joinedOn: {type: Date, default: Date.now}
+    joinedOn: {type: Date, default: Date.now},
+    friends: [{
+        userName: String,
+        userId: String
+    }]
 })
 
 export default mongoose.model("User", userSchema)

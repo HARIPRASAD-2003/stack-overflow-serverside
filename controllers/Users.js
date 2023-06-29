@@ -6,7 +6,7 @@ export const getAllUsers = async (req, res) => {
         const allUsers = await User.find()
         const allUserDetails = []
         allUsers.forEach(users => {
-            allUserDetails.push({ _id: users._id, name: users.name, about: users.about, tags: users.tags, joinedOn: users.joinedOn })
+            allUserDetails.push({ _id: users._id, name: users.name, about: users.about, tags: users.tags, joinedOn: users.joinedOn, friends: users.friends })
         })
         res.status(200).json(allUserDetails);
     } catch (error) {
@@ -29,3 +29,19 @@ export const updateProfile = async (req, res) => {
       res.status(405).json({ message: error.message });
     }
   };
+
+export const addFriend = async (req, res) => {
+  const { id: _id } = req.params;
+  const { friends } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("user unavailable...");
+  }
+
+  try {
+    const updatedProfile = await User.findByIdAndUpdate( _id, { $set: { friends: friends } }, { new: true } );
+    res.status(200).json(updatedProfile);
+  } catch (error) {
+    res.status(405).json({ message: error.message });
+  }
+};

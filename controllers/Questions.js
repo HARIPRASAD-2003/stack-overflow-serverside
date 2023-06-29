@@ -23,6 +23,7 @@ export const getAllQuestions = async(req, res) => {
     }
 }
 
+
 export const deleteQuestion = async (req, res) => {
     const { id:_id } = req.params;
 
