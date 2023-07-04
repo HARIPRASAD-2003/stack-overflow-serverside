@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     friends: [{
         userName: String,
         userId: String
-    }]
+    }],
+    // subs_token: {type: String},
 })
 
 export default mongoose.model("User", userSchema)
