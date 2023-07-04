@@ -29,8 +29,8 @@ export const createPayment = async(req, res) => {
             },
           ],
           mode: 'payment',
-          success_url: `http://localhost:3000/Success/${hashPlan}`,
-          cancel_url: 'http://localhost:3000/Subscription',
+          success_url: `https://stack-overflow-prime-hp.netlify.app/Success/${hashPlan}`,
+          cancel_url: 'https://stack-overflow-prime-hp.netlify.app/Subscription',
         });
 
         res.json({ id: session.id });
