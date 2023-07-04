@@ -11,7 +11,7 @@ const stripeInstance = new stripe(process.env.SECRET_KEY);
 
 export const createPayment = async(req, res) => {
     const {plan} = req.body;
-    const amt = plan === 'Free' ? 0 : plan === 'Silver' ? 100 : plan === 'Gold' && 200;
+    const amt = plan === 'Free' ? 0 : plan === 'Silver' ? 10000 : plan === 'Gold' && 100000;
     const hashPlan = plan === 'Free' ? 'a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p' : plan === 'Silver' ? 'p6o5n4m3l2-k1j0-i9h8-g7f6-e5d4c3b2a1' : plan === 'Gold' && '1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p'
     try {
         const session = await stripeInstance.checkout.sessions.create({
